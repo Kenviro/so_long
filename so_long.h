@@ -44,6 +44,7 @@ typedef struct s_data
 	int		winsize_x;
 	int		exit_y;
 	int		exit_x;
+	char	filename;
 	char	**map;
 }	t_data;
 
