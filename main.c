@@ -53,6 +53,7 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
+	data.filename = argv[1];
 	if (argc != 2)
 	{
 		perror("Map not specified.");
@@ -60,8 +61,8 @@ int	main(int argc, char **argv)
 	}
 	data.nbr_movement = 0;
 	data.mlx = mlx_init();
-	printf("%s\n", argv[1]);
-	map(&data, argv[1]);
+	printf("%s\n");
+	map(&data);
 	data.win = mlx_new_window(data.mlx, (data.winsize_x * 32), \
 							(data.winsize_y * 32), "so_long");
 	frames(&data, i);
