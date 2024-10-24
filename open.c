@@ -12,12 +12,12 @@
 
 #include "so_long.h"
 
-void	read_map(t_data *data, const char *map_name)
+void	read_map(t_data *data)
 {
 	char	*temp;
 	int		array[2];
 
-	array[0] = open(map_name, O_RDONLY);
+	array[0] = open(data->filename, O_RDONLY);
 	if (array[0] == -1)
 	{
 		perror("Error opening .ber file");
@@ -120,12 +120,12 @@ int	tester3(t_data *data)
 	return (0);
 }
 
-void	map(t_data *data, const char *map_name)
+void	map(t_data *data)
 {
 	int	test;
 
 	printf("%s\n", map_name);
-	read_map(data, map_name);
+	read_map(data);
 	test = tester1(data);
 	if (test == 0)
 		test = tester2(data);
