@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:24:42 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/23 13:57:20 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:09:14 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,26 @@ void	create_filename(char *filename, int index)
 	char	index_str[3];
 
 	ft_strcpy(filename, "Frames/frame");
+	if (index < 10)
+	{
+		index_str[0] = '0' + index;
+		index_str[1] = '\0';
+	}
+	else
+	{
+		index_str[0] = '0' + (index / 10);
+		index_str[1] = '0' + (index % 10);
+		index_str[2] = '\0';
+	}
+	ft_strcat(filename, index_str);
+	ft_strcat(filename, ".xpm");
+}
+
+void	create_filename_exit(char *filename, int index)
+{
+	char	index_str[3];
+
+	ft_strcpy(filename, "portal_frame/frame");
 	if (index < 10)
 	{
 		index_str[0] = '0' + index;

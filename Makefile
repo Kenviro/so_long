@@ -2,7 +2,7 @@ NAME = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -DGL_SILENCE_DEPRECATION
 MLX_FLAGS = -L$(MLX_DIR) -lmlx -framework OpenGL -framework AppKit
-SRC = main.c draw.c createfilename.c frame.c keyboard.c get_next_line.c open.c
+SRC = main.c draw.c createfilename.c frame.c keyboard.c get_next_line.c open.c draw_exit.c
 HEADERS = so_long.h mlx.h libft.h
 OBJ = $(SRC:.c=.o)
 

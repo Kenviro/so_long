@@ -6,11 +6,21 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:54:02 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/23 17:52:20 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/24 16:04:26 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	one_or_C(t_data *data)
+{
+	if (data->map[data->y][data->x] == '1')
+		mlx_put_image_to_window(data->mlx, data->win, \
+		data->frames[data->current_frame], data->x * 32, data->y * 32);
+	if (data->map[data->y][data->x] == 'C')
+		mlx_put_image_to_window(data->mlx, data->win, data->img_pig, \
+							data->x * 32, data->y * 32);
+}
 
 void	construct_map(t_data *data)
 {
@@ -20,19 +30,16 @@ void	construct_map(t_data *data)
 		while (data->map[data->y][data->x] != '\0' \
 				&& data->map[data->y][data->x] != '\n')
 		{
-			if (data->map[data->y][data->x] == '1')
-				mlx_put_image_to_window(data->mlx, data->win, \
-						data->frames[data->current_frame], data->x * 32, data->y * 32);
+			one_or_C(data);
+			if (data->map[data->y][data->x] == 'E')
+				put_exit(data);
 			if (data->map[data->y][data->x] == 'P')
 			{
 				mlx_put_image_to_window(data->mlx, data->win, \
-										data->img_char, data->x * 32, data->y * 32);
+								data->img_char, data->x * 32, data->y * 32);
 				data->pose_y_char = data->y;
 				data->pose_x_char = data->x;
 			}
-			if (data->map[data->y][data->x] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->img_pig, \
-									data->x * 32, data->y * 32);
 			data->x++;
 		}
 		data->y++;

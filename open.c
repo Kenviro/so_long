@@ -6,18 +6,18 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:52:42 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/23 18:15:22 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/24 18:57:17 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	read_map(t_data *data)
+void	read_map(t_data *data, const char *map_name)
 {
 	char	*temp;
 	int		array[2];
 
-	array[0] = open("level_1.ber", O_RDONLY);
+	array[0] = open(map_name, O_RDONLY);
 	if (array[0] == -1)
 	{
 		perror("Error opening .ber file");
@@ -25,19 +25,24 @@ void	read_map(t_data *data)
 	}
 	data->y = 0;
 	temp = get_next_line(array[0]);
+	printf("temp: %s\n", temp);
 	while (temp != NULL)
 	{
 		array[1] = ft_strlen(temp);
-		data->map[data->y] = malloc((array[1]) * sizeof(char));
+		printf("temp: %s\n", temp);
+		data->map[data->y] = malloc((array[1] + 1) * sizeof(char));
+		printf("temp: %s\n", temp);
 		if (!data->map[data->y])
 		{
 			perror("Memory allocation error");
 			exit(EXIT_FAILURE);
 		}
-		ft_strcpy(data->map[data->y++], temp);
-		free (temp);
+		ft_strcpy(data->map[data->y], temp);
+		data->y++;
 		temp = get_next_line(array[0]);
 	}
+	printf("Map name: %s\n", map_name);
+	data->map[data->y] = NULL;
 	close(array[0]);
 }
 
@@ -49,11 +54,9 @@ int	tester1(t_data *data)
 
 	y = 0;
 	len = ft_strlen_solong(data->map[y]);
-	printf("%i", len);
 	while (data->map[y] != NULL)
 	{
 		len_test = ft_strlen_solong(data->map[y]);
-		printf("%i", len_test);
 		if (len_test != len)
 			return (1);
 		y++;
@@ -117,23 +120,17 @@ int	tester3(t_data *data)
 	return (0);
 }
 
-void	map(t_data *data)
+void	map(t_data *data, const char *map_name)
 {
 	int	test;
 
-	read_map(data);
+	printf("%s\n", map_name);
+	read_map(data, map_name);
 	test = tester1(data);
-	printf("%i", test);
 	if (test == 0)
-	{
 		test = tester2(data);
-		printf("%i", test);
-	}
 	if (test == 0)
-	{
 		test = tester3(data);
-		printf("%i", test);
-	}
 	if (test == 1)
 	{
 		perror("Error\nInvalid map.");
