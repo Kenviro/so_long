@@ -53,7 +53,7 @@ void	create_filename(char *filename, int index);
 void	create_filename_exit(char *filename, int index);
 void	render_frame(t_data *data);
 void	put_character(t_data *data);
-void	map(t_data *data, const char *map_name);
+void	map(t_data *data);
 void	construct_map(t_data *data);
 void	draw_exit(t_data *data);
 int		wall_frame(t_data *data, int i);
