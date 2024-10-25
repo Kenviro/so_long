@@ -6,45 +6,11 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:52:42 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/24 18:57:17 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/25 13:56:14 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	read_map(t_data *data)
-{
-	char	*temp;
-	int		array[2];
-
-	array[0] = open(data->filename, O_RDONLY);
-	if (array[0] == -1)
-	{
-		perror("Error opening .ber file");
-		exit(EXIT_FAILURE);
-	}
-	data->y = 0;
-	temp = get_next_line(array[0]);
-	printf("temp: %s\n", temp);
-	while (temp != NULL)
-	{
-		array[1] = ft_strlen(temp);
-		printf("temp: %s\n", temp);
-		data->map[data->y] = malloc((array[1] + 1) * sizeof(char));
-		printf("temp: %s\n", temp);
-		if (!data->map[data->y])
-		{
-			perror("Memory allocation error");
-			exit(EXIT_FAILURE);
-		}
-		ft_strcpy(data->map[data->y], temp);
-		data->y++;
-		temp = get_next_line(array[0]);
-	}
-	printf("Map name: %s\n", map_name);
-	data->map[data->y] = NULL;
-	close(array[0]);
-}
 
 int	tester1(t_data *data)
 {
@@ -124,7 +90,6 @@ void	map(t_data *data)
 {
 	int	test;
 
-	printf("%s\n", map_name);
 	read_map(data);
 	test = tester1(data);
 	if (test == 0)

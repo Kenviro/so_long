@@ -6,13 +6,13 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:54:02 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/24 16:04:26 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:13:15 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	one_or_C(t_data *data)
+void	one_or_c(t_data *data)
 {
 	if (data->map[data->y][data->x] == '1')
 		mlx_put_image_to_window(data->mlx, data->win, \
@@ -24,13 +24,14 @@ void	one_or_C(t_data *data)
 
 void	construct_map(t_data *data)
 {
+	data->y = 0;
 	while (data->map[data->y] != NULL)
 	{
 		data->x = 0;
 		while (data->map[data->y][data->x] != '\0' \
 				&& data->map[data->y][data->x] != '\n')
 		{
-			one_or_C(data);
+			one_or_c(data);
 			if (data->map[data->y][data->x] == 'E')
 				put_exit(data);
 			if (data->map[data->y][data->x] == 'P')
@@ -50,7 +51,8 @@ void	render_frame(t_data *data)
 {
 	char	*movement;
 
-	data->y = 0;
+	if (data->frozen == 1)
+		return ;
 	mlx_clear_window(data->mlx, data->win);
 	draw_background(data);
 	construct_map(data);
@@ -63,6 +65,7 @@ int	update(t_data *data)
 {
 	data->current_frame = (data->current_frame + 1) % NUM_FRAMES;
 	render_frame(data);
+	end_game(data);
 	return (0);
 }
 

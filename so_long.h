@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:47:19 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/24 17:47:22 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:57:50 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,30 +44,43 @@ typedef struct s_data
 	int		winsize_x;
 	int		exit_y;
 	int		exit_x;
-	char	filename;
+	int		frozen;
+	int		levelnbr;
+	char	*filename;
 	char	**map;
 }	t_data;
 
+int		main(int argc, char **argv);
+void	up_keycode(int keycode, t_data *data);
+void	left_keycode(int keycode, t_data *data);
+void	down_keycode(int keycode, t_data *data);
+void	right_keycode(int keycode, t_data *data);
+void	enter_keycode(int keycode, t_data *data, int i);
 void	put_wall(t_data *data, int x, int y);
 void	create_filename(char *filename, int index);
 void	create_filename_exit(char *filename, int index);
 void	render_frame(t_data *data);
 void	put_character(t_data *data);
 void	map(t_data *data);
+void	frames(t_data *data, int i);
+void	loop(t_data *data);
 void	construct_map(t_data *data);
 void	draw_exit(t_data *data);
+void	free_ressources(t_data *data);
 int		wall_frame(t_data *data, int i);
 int		update(t_data *data);
 int		key_hook(int keycode, t_data *data);
 int		ft_strlen_solong(const char *str);
 int		exit_frame(t_data *data, int i);
-int		count_item(t_data *data);
+int		count_item(t_data *data);;
 void	put_drake(t_data *data);
 void	put_pig(t_data *data);
 void	put_sprite(t_data *data);
 void	put_exit(t_data *data);
 void	draw_background(t_data *data);
 void	draw_close_exit(t_data *data);
+void	read_map(t_data *data);
 char	*get_next_line(int fd);
+void	end_game(t_data *data);
 
 #endif

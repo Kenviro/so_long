@@ -1,39 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   keyboard.c                                         :+:      :+:    :+:   */
+/*   next_level.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/21 17:07:14 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 17:44:46 by ktintim-         ###   ########.fr       */
+/*   Created: 2024/10/25 16:31:02 by ktintim-          #+#    #+#             */
+/*   Updated: 2024/10/25 17:44:51 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int	key_hook(int keycode, t_data *data)
+void	free_ressources(t_data *data)
 {
-	if (keycode == 53)
-	{
-		mlx_destroy_window(data->mlx, data->win);
-		exit(0);
-	}
-	up_keycode(keycode, data);
-	left_keycode(keycode, data);
-	down_keycode(keycode, data);
-	right_keycode(keycode, data);
-	enter_keycode(keycode, data, 0);
-	render_frame(data);
-	return (0);
-}
-
-int	ft_strlen_solong(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\n' && str[i] != '\0')
-		i++;
-	return (i);
+	data->y = 0;
+	data->x = 0;
+	data->pose_y_char = 0;
+	data->pose_x_char = 0;
+	data->current_frame = 0;
+	data->map = NULL;
+	data->winsize_x = 0;
+	data->winsize_y = 0;
+	data->exit_x = 0;
+	data->exit_y = 0;
+	data->win = NULL;
+	data->mlx = NULL;
 }

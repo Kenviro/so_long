@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 15:24:42 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/24 12:09:14 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/25 14:15:11 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,10 +58,10 @@ void	draw_background(t_data *data)
 	int	y;
 
 	y = 0;
-	while (y < 480)
+	while (y < data->winsize_y * 32)
 	{
 		x = 0;
-		while (x < 640)
+		while (x < data->winsize_x * 32)
 		{
 			mlx_put_image_to_window(data->mlx, data->win, \
 									data->img_ground, x, y);

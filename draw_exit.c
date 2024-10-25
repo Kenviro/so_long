@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/24 10:07:34 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/24 16:07:13 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/25 10:51:46 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	count_item(t_data *data)
 	item = 0;
 	temp_x = 0;
 	temp_y = 0;
-	item = 0;
 	while (data->map[temp_y] != NULL)
 	{
 		temp_x = 0;

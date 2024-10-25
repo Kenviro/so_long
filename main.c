@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:47:00 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/24 18:23:46 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/25 16:47:06 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,14 @@ void	found_exit(t_data *data)
 	}
 }
 
+void	end_game(t_data *data)
+{
+	if (data->pose_y_char == data->exit_y && data->pose_x_char == data->exit_x)
+	{
+		data->frozen = 1;
+	}
+}
+
 void	frames(t_data *data, int i)
 {
 	wall_frame(data, i);
@@ -53,20 +61,15 @@ int	main(int argc, char **argv)
 	int		i;
 
 	i = 0;
-	data.filename = argv[1];
-	if (argc != 2)
-	{
-		perror("Map not specified.");
-		return (0);
-	}
-	data.nbr_movement = 0;
+	ft_bzero(&data, sizeof(t_data));
+	if (argc == 2)
+		data.filename = argv[1];
+	data.levelnbr = 1;
 	data.mlx = mlx_init();
-	printf("%s\n");
 	map(&data);
 	data.win = mlx_new_window(data.mlx, (data.winsize_x * 32), \
 							(data.winsize_y * 32), "so_long");
 	frames(&data, i);
-	data.current_frame = 0;
 	loop(&data);
 	i = 0;
 	while (i < NUM_FRAMES)
