@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:14 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 17:44:46 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:12:08 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,26 @@ int	ft_strlen_solong(const char *str)
 	while (str[i] != '\n' && str[i] != '\0')
 		i++;
 	return (i);
+}
+
+int	other_letter(t_data *data)
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (data->map[y] != NULL)
+	{
+		x = 0;
+		while (data->map[y][x] != '\0' && data->map[y][x] != '\n')
+		{
+			if (data->map[y][x] != '1' && data->map[y][x] != '0' && \
+				data->map[y][x] != 'P' && data->map[y][x] != 'C' && \
+				data->map[y][x] != 'E')
+				return (1);
+			x++;
+		}
+		y++;
+	}
+	return (0);
 }

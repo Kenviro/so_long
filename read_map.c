@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:52:48 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 17:03:33 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/28 16:19:48 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ int	map_choice(t_data *data)
 	int		map_open;
 	char	*map;
 
+	map_open = 0;
 	if (data->filename != NULL)
 		map_open = open(data->filename, O_RDONLY);
-	else
+	else if (data->levelnbr <= 4)
 	{
 		map = malloc(10 * sizeof(char));
 		ft_strcpy(map, "level");
@@ -56,6 +57,12 @@ int	map_choice(t_data *data)
 		ft_strcat(map, ".ber");
 		map_open = open(map, O_RDONLY);
 		free (map);
+	}
+	else
+	{
+		ft_putstr_fd("Final level reached, Congrats!", 1);
+		free_ressources(data);
+		exit(EXIT_SUCCESS);
 	}
 	return (map_open);
 }
@@ -66,8 +73,9 @@ void	read_map(t_data *data)
 	int		array[2];
 	int		lines_allocated;
 
-	lines_allocated = 15;
+	lines_allocated = 50000;
 	array[0] = map_choice(data);
+	temp = get_next_line(array[0]);
 	if (array[0] == -1)
 	{
 		perror("Error opening .ber file");
@@ -80,6 +88,5 @@ void	read_map(t_data *data)
 		exit(EXIT_FAILURE);
 	}
 	data->y = 0;
-	temp = get_next_line(array[0]);
 	read_map_loop(data, array, temp, lines_allocated);
 }

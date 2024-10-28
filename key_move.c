@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:07:18 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 17:38:01 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:52:09 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	left_keycode(int keycode, t_data *data)
 			data->map[data->pose_y_char][data->pose_x_char - 1] = 'P';
 			data->pose_x_char = data->pose_x_char - 1;
 			data->nbr_movement++;
+			free(data->img_char);
+			data->img_char = mlx_xpm_file_to_image(data->mlx, "char_left.xpm", \
+									&(int){0}, &(int){0});
 		}
 	}
 }
@@ -56,6 +59,9 @@ void	right_keycode(int keycode, t_data *data)
 			data->map[data->pose_y_char][data->pose_x_char + 1] = 'P';
 			data->pose_x_char = data->pose_x_char + 1;
 			data->nbr_movement++;
+			free(data->img_char);
+			data->img_char = mlx_xpm_file_to_image(data->mlx, "char_right.xpm", \
+									&(int){0}, &(int){0});
 		}
 	}
 }
@@ -82,21 +88,22 @@ void	enter_keycode(int keycode, t_data *data, int i)
 	{
 		if (data->frozen == 1)
 		{
-			data->levelnbr++;
-			data->frozen = 0;
-			mlx_clear_window(data->mlx, data->win);
-			mlx_destroy_window(data->mlx, data->win);
-			free_ressources(data);
-			data->mlx = mlx_init();
-			map(data);
-			data->win = mlx_new_window(data->mlx, (data->winsize_x * 32), \
-							(data->winsize_y * 32), "so_long");
-			frames(data, 0);
-			loop(data);
-			while (i < NUM_FRAMES)
+			if (data->filename == NULL)
 			{
-				mlx_destroy_image(data->mlx, data->frames[i]);
-				i++;
+				next_level(data);
+				frames(data, 0);
+				loop_main(data);
+				while (i < NUM_FRAMES)
+				{
+					mlx_destroy_image(data->mlx, data->frames[i]);
+					i++;
+				}
+			}
+			else
+			{
+				ft_putstr_fd("Congrats! You have completed the level.", 1);
+				free_ressources(data);
+				exit(EXIT_SUCCESS);
 			}
 		}
 	}

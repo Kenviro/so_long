@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:02:22 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/23 13:58:12 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/28 10:04:24 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	put_character(t_data *data)
 {
 	data->img_char = mlx_xpm_file_to_image(data->mlx, \
-									"character.xpm", &(int){0}, &(int){0});
+									"char_right.xpm", &(int){0}, &(int){0});
 	if (!data->img_char)
 	{
 		perror("Error loading character image");

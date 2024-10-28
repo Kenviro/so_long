@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:47:19 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 16:57:50 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:11:57 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data
 	int		exit_x;
 	int		frozen;
 	int		levelnbr;
+	int		collectibles;
 	char	*filename;
 	char	**map;
 }	t_data;
@@ -63,7 +64,7 @@ void	render_frame(t_data *data);
 void	put_character(t_data *data);
 void	map(t_data *data);
 void	frames(t_data *data, int i);
-void	loop(t_data *data);
+void	loop_main(t_data *data);
 void	construct_map(t_data *data);
 void	draw_exit(t_data *data);
 void	free_ressources(t_data *data);
@@ -82,5 +83,10 @@ void	draw_close_exit(t_data *data);
 void	read_map(t_data *data);
 char	*get_next_line(int fd);
 void	end_game(t_data *data);
+void	next_level(t_data *data);
+int		close_window(t_data *data);
+int		are_all_collectibles(t_data *data);
+int		is_exit_accessible(t_data *data);
+int		other_letter(t_data *data);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:47:00 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 16:47:06 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/28 11:17:03 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,11 @@ void	frames(t_data *data, int i)
 	found_exit(data);
 }
 
-void	loop(t_data *data)
+void	loop_main(t_data *data)
 {
 	mlx_loop_hook(data->mlx, update, data);
 	mlx_key_hook(data->win, key_hook, data);
+	mlx_hook(data->win, 17, 0, close_window, data);
 	mlx_loop(data->mlx);
 }
 
@@ -64,13 +65,15 @@ int	main(int argc, char **argv)
 	ft_bzero(&data, sizeof(t_data));
 	if (argc == 2)
 		data.filename = argv[1];
+	else
+		data.filename = NULL;
 	data.levelnbr = 1;
 	data.mlx = mlx_init();
 	map(&data);
 	data.win = mlx_new_window(data.mlx, (data.winsize_x * 32), \
 							(data.winsize_y * 32), "so_long");
 	frames(&data, i);
-	loop(&data);
+	loop_main(&data);
 	i = 0;
 	while (i < NUM_FRAMES)
 	{
