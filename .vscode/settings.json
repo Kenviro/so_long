@@ -1,0 +1,14 @@
+{
+	"files.associations": {
+		"so_long.h": "c",
+		"unistd.h": "c",
+		"mlx_new_window.h": "c",
+		"algorithm": "c",
+		"array": "c",
+		"iterator": "c",
+		"string": "c",
+		"string_view": "c",
+		"vector": "c"
+	},
+	"C_Cpp.errorSquiggles": "disabled"
+}
