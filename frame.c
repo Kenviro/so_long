@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:54:02 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/25 14:13:15 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/05 16:23:38 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	render_frame(t_data *data)
 int	update(t_data *data)
 {
 	data->current_frame = (data->current_frame + 1) % NUM_FRAMES;
+	usleep(30000);
 	render_frame(data);
 	end_game(data);
 	return (0);

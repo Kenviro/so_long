@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:52:48 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/28 16:19:48 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/10/30 09:44:49 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	read_map(t_data *data)
 	int		array[2];
 	int		lines_allocated;
 
-	lines_allocated = 50000;
+	lines_allocated = 5000;
 	array[0] = map_choice(data);
 	temp = get_next_line(array[0]);
 	if (array[0] == -1)
