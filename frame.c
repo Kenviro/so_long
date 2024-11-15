@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 16:54:02 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/11/05 16:23:38 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:38:50 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ void	construct_map(t_data *data)
 				data->pose_y_char = data->y;
 				data->pose_x_char = data->x;
 			}
+			if (data->map[data->y][data->x] == 'B')
+				enemy_map(data);
 			data->x++;
 		}
 		data->y++;
@@ -51,7 +53,7 @@ void	render_frame(t_data *data)
 {
 	char	*movement;
 
-	if (data->frozen == 1)
+	if (data->frozen == 1 || data->did_lose == 1)
 		return ;
 	mlx_clear_window(data->mlx, data->win);
 	draw_background(data);

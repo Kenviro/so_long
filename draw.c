@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:02:22 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/28 10:04:24 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:30:40 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,11 @@ void	put_character(t_data *data)
 	}
 }
 
-void	put_drake(t_data *data)
+void	put_cat(t_data *data)
 {
-	data->img_drake = mlx_xpm_file_to_image(data->mlx, \
-									"Drake.xpm", &(int){0}, &(int){0});
-	if (!data->img_drake)
+	data->img_enemy = mlx_xpm_file_to_image(data->mlx, \
+									"enemy.xpm", &(int){0}, &(int){0});
+	if (!data->img_enemy)
 	{
 		perror("Error loading character image");
 		return ;
@@ -59,7 +59,7 @@ void	put_ground(t_data *data)
 void	put_sprite(t_data *data)
 {
 	put_character(data);
-	put_drake(data);
+	put_cat(data);
 	put_pig(data);
 	put_ground(data);
 }

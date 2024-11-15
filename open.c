@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 14:52:42 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/28 15:35:46 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/15 13:32:51 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,8 @@ void	map(t_data *data)
 		test = are_all_collectibles(data);
 	if (test == 0)
 		test = is_exit_accessible(data);
+	if (test == 0)
+		test = enemy(data);
 	if (test == 1)
 	{
 		perror("Error\nInvalid map.");

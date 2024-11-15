@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/28 13:32:44 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/28 15:49:36 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/14 11:05:02 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,8 @@ int	found_accessible_exit(t_data *data, int x, int y, int *visited)
 {
 	if (x < 0 || y < 0 || x >= data->winsize_x || y >= data->winsize_y)
 		return (1);
-	if (data->map[y][x] == '1' || visited[y * data->winsize_x + x])
+	if (data->map[y][x] == '1' || data->map[y][x] == 'B' || \
+			visited[y * data->winsize_x + x])
 		return (1);
 	if (data->map[y][x] == 'E')
 		return (0);

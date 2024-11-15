@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:14 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/11/06 15:05:31 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/15 11:19:27 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,16 @@ int	other_letter(t_data *data)
 		{
 			if (data->map[y][x] != '1' && data->map[y][x] != '0' && \
 				data->map[y][x] != 'P' && data->map[y][x] != 'C' && \
-				data->map[y][x] != 'E')
+				data->map[y][x] != 'E' && data->map[y][x] != 'B')
 				return (1);
 			x++;
 		}
 		y++;
 	}
 	return (0);
+}
+
+int	calculate_distance(int x1, int y1, int x2, int y2)
+{
+	return (abs(x2 - x1) + abs(y2 - y1));
 }

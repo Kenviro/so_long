@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 11:07:18 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/10/28 10:52:09 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:06:27 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@ void	left_keycode(int keycode, t_data *data)
 	{
 		if (data->map[data->pose_y_char][data->pose_x_char - 1] != '1' && \
 			(data->map[data->pose_y_char][data->pose_x_char - 1] != 'E' \
-			|| count_item(data) == 0))
+			|| count_item(data) == 0) && data->frozen != 1)
 		{
+			did_loose_left(data);
 			data->map[data->pose_y_char][data->pose_x_char] = '0';
 			data->map[data->pose_y_char][data->pose_x_char - 1] = 'P';
 			data->pose_x_char = data->pose_x_char - 1;
-			data->nbr_movement++;
+			if (data->frozen == 0)
+				data->nbr_movement++;
 			free(data->img_char);
 			data->img_char = mlx_xpm_file_to_image(data->mlx, "char_left.xpm", \
 									&(int){0}, &(int){0});
+			if (data->enemy_nbr == 1)
+				move_enemy_towards_player(data);
 		}
 	}
 }
@@ -37,12 +41,16 @@ void	down_keycode(int keycode, t_data *data)
 	{
 		if (data->map[data->pose_y_char + 1][data->pose_x_char] != '1' && \
 			(data->map[data->pose_y_char + 1][data->pose_x_char] != 'E' \
-			|| count_item(data) == 0))
+			|| count_item(data) == 0) && data->frozen != 1)
 		{
+			did_loose_down(data);
 			data->map[data->pose_y_char][data->pose_x_char] = '0';
 			data->map[data->pose_y_char + 1][data->pose_x_char] = 'P';
 			data->pose_y_char = data->pose_y_char + 1;
-			data->nbr_movement++;
+			if (data->frozen == 0)
+				data->nbr_movement++;
+			if (data->enemy_nbr == 1)
+				move_enemy_towards_player(data);
 		}
 	}
 }
@@ -53,15 +61,19 @@ void	right_keycode(int keycode, t_data *data)
 	{
 		if (data->map[data->pose_y_char][data->pose_x_char + 1] != '1' && \
 			(data->map[data->pose_y_char][data->pose_x_char + 1] != 'E' \
-			|| count_item(data) == 0))
+			|| count_item(data) == 0) && data->frozen != 1)
 		{
+			did_loose_right(data);
 			data->map[data->pose_y_char][data->pose_x_char] = '0';
 			data->map[data->pose_y_char][data->pose_x_char + 1] = 'P';
 			data->pose_x_char = data->pose_x_char + 1;
-			data->nbr_movement++;
+			if (data->frozen == 0)
+				data->nbr_movement++;
 			free(data->img_char);
 			data->img_char = mlx_xpm_file_to_image(data->mlx, "char_right.xpm", \
 									&(int){0}, &(int){0});
+			if (data->enemy_nbr == 1)
+				move_enemy_towards_player(data);
 		}
 	}
 }
@@ -72,12 +84,16 @@ void	up_keycode(int keycode, t_data *data)
 	{
 		if (data->map[data->pose_y_char - 1][data->pose_x_char] != '1' && \
 			(data->map[data->pose_y_char - 1][data->pose_x_char] != 'E' \
-			|| count_item(data) == 0))
+			|| count_item(data) == 0) && data->frozen != 1)
 		{
+			did_loose_up(data);
 			data->map[data->pose_y_char][data->pose_x_char] = '0';
 			data->map[data->pose_y_char - 1][data->pose_x_char] = 'P';
 			data->pose_y_char = data->pose_y_char - 1;
-			data->nbr_movement++;
+			if (data->frozen == 0)
+				data->nbr_movement++;
+			if (data->enemy_nbr == 1)
+				move_enemy_towards_player(data);
 		}
 	}
 }
