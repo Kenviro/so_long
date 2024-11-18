@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 17:07:14 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/11/15 11:19:27 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/15 14:17:14 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	key_hook(int keycode, t_data *data)
 	if (keycode == 53)
 	{
 		mlx_destroy_window(data->mlx, data->win);
+		free_ressources(data);
 		exit(0);
 	}
 	up_keycode(keycode, data);
