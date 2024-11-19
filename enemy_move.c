@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 11:31:32 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/11/15 13:41:04 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:09:34 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ void	move_enemy_towards_player(t_data *data)
 	moves[1].dy = 0;
 	moves[1].distance = calculate_distance(data->pose_x_enemy - 1, \
 		data->pose_y_enemy, data->pose_x_char, data->pose_y_char);
-	moves[2].dx = 0; 
+	moves[2].dx = 0;
 	moves[2].dy = 1;
 	moves[2].distance = calculate_distance(data->pose_x_enemy, \
 		data->pose_y_enemy + 1, data->pose_x_char, data->pose_y_char);

@@ -6,7 +6,7 @@
 /*   By: ktintim- <ktintim-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/21 10:47:19 by ktintim-          #+#    #+#             */
-/*   Updated: 2024/11/15 11:11:48 by ktintim-         ###   ########.fr       */
+/*   Updated: 2024/11/19 11:10:18 by ktintim-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <fcntl.h>
-#include <math.h>
+# include <math.h>
 
 typedef struct s_data
 {
